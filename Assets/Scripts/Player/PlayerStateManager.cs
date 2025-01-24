@@ -11,6 +11,9 @@ namespace Player
         public PlayerStateMachine StateMachine { get; private set; }
         public PlayerShakeState ShakeState{ get; private set; }
         public PlayerIdleState IdleState { get; private set; }
+        public PlayerFlyState FlyState { get; private set; }
+        public PlayerReadyToFlyState ReadyToFlyState { get; private set; }
+        public PlayerStateEnum currentStateEnum { get; private set; }
         [SerializeField, Self] ChangeStateListener changeStateListener;
 
         [Header("Shake State")] [SerializeField]
@@ -22,8 +25,13 @@ namespace Player
             StateMachine = new PlayerStateMachine();
             ShakeState = new PlayerShakeState();
             IdleState = new PlayerIdleState();
+            FlyState = new PlayerFlyState();
+            ReadyToFlyState = new PlayerReadyToFlyState();
+            FlyState.Initialize(gameObject);
+            ShakeState.Initialize(gameObject, shakeText);
+            ReadyToFlyState.Initialize(this);
+            
             StateMachine.Initialize(IdleState);
-            ShakeState.Initialize(this.gameObject, shakeText);
         }
 
         public void FixedUpdate()
@@ -37,12 +45,19 @@ namespace Player
             {
                 case PlayerStateEnum.SHAKE:
                     StateMachine.ChangeState(ShakeState);
+                    currentStateEnum = PlayerStateEnum.SHAKE;
                     break;
                 case PlayerStateEnum.IDLE:
                     StateMachine.ChangeState(IdleState);
+                    currentStateEnum = PlayerStateEnum.IDLE;
                     break;
                 case PlayerStateEnum.READY_TO_FLY:
-                    StateMachine.ChangeState(IdleState);
+                    StateMachine.ChangeState(ReadyToFlyState);
+                    currentStateEnum = PlayerStateEnum.READY_TO_FLY;
+                    break;
+                case PlayerStateEnum.FLY:
+                    StateMachine.ChangeState(FlyState);
+                    currentStateEnum = PlayerStateEnum.FLY;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(state), state, null);

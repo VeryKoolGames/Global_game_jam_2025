@@ -4,8 +4,8 @@ namespace Player
     {
         IDLE,
         SHAKE,
-        FLY,
         READY_TO_FLY,
+        FLY,
         DEATH,
     }
 }

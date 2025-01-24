@@ -1,12 +1,21 @@
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Player
 {
-    public class PlayeReadyToFlyState : PlayerState
+    public class PlayerReadyToFlyState : PlayerState
     {
-        public override Task Enter()
+        private PlayerStateManager playerStateManager;
+
+        public void Initialize(PlayerStateManager playerStateManager)
         {
-            return Task.CompletedTask;
+            this.playerStateManager = playerStateManager;
+        }
+        public override async Task Enter()
+        {
+            Debug.Log("Entered ReadyToFly state.");
+            await Task.Delay(100);
+            playerStateManager.StateMachine.ChangeState(playerStateManager.FlyState);
         }
 
         public override void Update()
@@ -15,6 +24,7 @@ namespace Player
 
         public override void Exit()
         {
+            Debug.Log("Exited ReadyToFly state.");
         }
     }
 }

@@ -14,6 +14,8 @@ namespace Player
 
         private void OnMouseDown()
         {
+            if (_stateManager.currentStateEnum >= PlayerStateEnum.READY_TO_FLY)
+                return;
             if (_stateManager.StateMachine._currentState == _stateManager.ShakeState)
                 return;
             startTimerEvent.Raise();
