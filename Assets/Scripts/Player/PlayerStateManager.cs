@@ -18,6 +18,10 @@ namespace Player
 
         [Header("Shake State")] [SerializeField]
         private TextMeshProUGUI shakeText;
+        [SerializeField] private RagdollManager ragdollManager;
+        
+        [Header("Fly State")]
+        [SerializeField] private GameListener refuelListener;
 
         public void Start()
         {
@@ -28,9 +32,8 @@ namespace Player
             FlyState = new PlayerFlyState();
             ReadyToFlyState = new PlayerReadyToFlyState();
             FlyState.Initialize(gameObject);
-            ShakeState.Initialize(gameObject, shakeText);
-            ReadyToFlyState.Initialize(this);
-            
+            ShakeState.Initialize(gameObject, shakeText, ragdollManager);
+            ReadyToFlyState.Initialize(this, refuelListener);
             StateMachine.Initialize(IdleState);
         }
 

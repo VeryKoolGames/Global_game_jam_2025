@@ -11,15 +11,18 @@ namespace Player
         private GameObject player;
         private Vector3 _previousPosition;
         private TextMeshProUGUI _shakeForceText;
+        private RagdollManager _ragdollManager;
 
-        public void Initialize(GameObject player, TextMeshProUGUI shakeForceText)
+        public void Initialize(GameObject player, TextMeshProUGUI shakeForceText, RagdollManager ragdollManager)
         {
             this.player = player;
             this._shakeForceText = shakeForceText;
+            this._ragdollManager = ragdollManager;
         }
         
         public override async Task Enter()
         {
+            _ragdollManager.EnableRagdoll();
             Vector3 mouseScreenPosition = Input.mousePosition;
             Ray ray = Camera.main.ScreenPointToRay(mouseScreenPosition);
             Plane plane = new Plane(Vector3.forward, player.transform.position);
@@ -58,6 +61,10 @@ namespace Player
                     player.transform.position.z
                 );
                 float distanceMoved = Vector3.Distance(_previousPosition, newPosition);
+                // if (distanceMoved > 0.5f)
+                // {
+                //     _ragdollManager.ShakeRagdoll(newPosition, _previousPosition);
+                // }
                 _shakeForce += Mathf.RoundToInt(distanceMoved);
                 _shakeForceText.text = $"Shake Force: {_shakeForce}";
                 _previousPosition = newPosition;
@@ -72,6 +79,7 @@ namespace Player
 
         public override void Exit()
         {
+            _ragdollManager.DisableRagdoll();
             Debug.Log($"Total Shake Force: {_shakeForce}");
         }
     }
