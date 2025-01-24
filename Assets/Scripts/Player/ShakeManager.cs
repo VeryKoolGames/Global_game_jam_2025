@@ -22,6 +22,9 @@ namespace Player
 
         private void OnMouseUp()
         {
+            if (_stateManager.StateMachine._currentState == _stateManager.IdleState)
+                return;
+            _stateManager.StateMachine.ChangeState(_stateManager.IdleState);
         }
     }
 }

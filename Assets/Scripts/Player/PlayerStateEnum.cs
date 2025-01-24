@@ -6,5 +6,6 @@ namespace Player
         SHAKE,
         FLY,
         READY_TO_FLY,
+        DEATH,
     }
 }

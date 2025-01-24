@@ -23,6 +23,7 @@ namespace DefaultNamespace
 
         private void StartTimer()
         {
+            if (_shouldTimerRun) return;
             _shouldTimerRun = true;
             currentTime = 0;
         }

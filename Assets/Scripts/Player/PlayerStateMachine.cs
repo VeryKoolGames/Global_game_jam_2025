@@ -10,7 +10,7 @@ namespace Player
             _currentState.Enter();
         }
     
-        public void ChangeState(PlayerState newState)
+        public async void ChangeState(PlayerState newState)
         {
             if (newState == _currentState)
             {
@@ -26,7 +26,7 @@ namespace Player
         
             if (_currentState != null)
             {
-                _currentState.Enter();
+                 await _currentState.Enter();
             }
         }
     

@@ -1,6 +1,7 @@
 using System;
 using Events;
 using KBCore.Refs;
+using TMPro;
 using UnityEngine;
 
 namespace Player
@@ -12,6 +13,9 @@ namespace Player
         public PlayerIdleState IdleState { get; private set; }
         [SerializeField, Self] ChangeStateListener changeStateListener;
 
+        [Header("Shake State")] [SerializeField]
+        private TextMeshProUGUI shakeText;
+
         public void Start()
         {
             changeStateListener.Response.AddListener(ChangeState);
@@ -19,7 +23,7 @@ namespace Player
             ShakeState = new PlayerShakeState();
             IdleState = new PlayerIdleState();
             StateMachine.Initialize(IdleState);
-            ShakeState.Initialize(this.gameObject);
+            ShakeState.Initialize(this.gameObject, shakeText);
         }
 
         public void FixedUpdate()
@@ -27,7 +31,7 @@ namespace Player
             StateMachine.Update();
         }
 
-        public void ChangeState(PlayerStateEnum state)
+        private void ChangeState(PlayerStateEnum state)
         {
             switch (state)
             {
