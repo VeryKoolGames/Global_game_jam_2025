@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class DecorGenerationManager : MonoBehaviour
 {
-    [SerializeField] private GameListener onBuildingGeneration;
     [SerializeField] private List<GameObject> buildingPrefabs;
     private Queue<GameObject> pooledBuildings = new Queue<GameObject>();
     [SerializeField] private List<GameObject> activeBuildings = new List<GameObject>();
 
     private void Start()
     {
-        onBuildingGeneration.Response.AddListener(ReplaceExistingBuildings);
-
         InitializePool();
     }
 
@@ -73,8 +70,4 @@ public class DecorGenerationManager : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        onBuildingGeneration.Response.RemoveListener(ReplaceExistingBuildings);
-    }
 }

@@ -19,11 +19,14 @@ namespace Player
         private PlayerStateManager _playerStateManager;
         private OnFlyStartEvent onFlyStartEvent;
         private GameEvent onPlayerDeathEvent;
+        private Material bottleMaterial;
 
 
         public void Initialize(GameObject player, Animator playerAnimator,
-            GameListener refuelListener, PlayerStateManager _playerStateManager, OnFlyStartEvent onFlyStartEvent, GameEvent onPlayerDeathEvent)
+            GameListener refuelListener, PlayerStateManager _playerStateManager,
+            OnFlyStartEvent onFlyStartEvent, GameEvent onPlayerDeathEvent, Material bottleMaterial)
         {
+            this.bottleMaterial = bottleMaterial;
             this.onPlayerDeathEvent = onPlayerDeathEvent;
             this.player = player;
             this.playerAnimator = playerAnimator;
@@ -32,14 +35,27 @@ namespace Player
             this._playerStateManager = _playerStateManager;
             this.onFlyStartEvent = onFlyStartEvent;
         }
+
+        private void UpdateMaterialOffset()
+        {
+            float normalizedFuel = Mathf.Clamp01(TotalFuel / 100f);
+            bottleMaterial.SetFloat("_offset", 1 - normalizedFuel);
+        }
+        
         public override Task Enter()
         {
             TotalFuel = 100;
             Debug.Log("Entered Fly state.");
+            SetPlayerHeight();
             targetPosition = player.transform.position;
-            playerAnimator.CrossFade("Flying", 0.8f);
+            playerAnimator.Play("Flying");
             onFlyStartEvent.Raise(TotalFuel);
             return Task.CompletedTask;
+        }
+
+        private void SetPlayerHeight()
+        {
+            player.transform.position = new Vector3(player.transform.position.x, 2, player.transform.position.z);
         }
         
         private void refillFuel()
@@ -51,7 +67,8 @@ namespace Player
         {
             HandleInput();
             MovePlayer();
-            TotalFuel -= Time.deltaTime;
+            TotalFuel -= Time.deltaTime * 10;
+            UpdateMaterialOffset();
             if (TotalFuel <= 0)
             {
                 onPlayerDeathEvent.Raise();
@@ -64,22 +81,23 @@ namespace Player
 
             if (Input.GetKey(KeyCode.A))
             {
-                targetPosition += Vector3.left * moveSpeed * Time.deltaTime;
+                targetPosition += Vector3.left * (moveSpeed * Time.deltaTime);
                 targetRotationZ = rotationAmount;
 
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                targetPosition += Vector3.right * moveSpeed * Time.deltaTime;
+                targetPosition += Vector3.right * (moveSpeed * Time.deltaTime);
                 targetRotationZ = -rotationAmount;
-
             }
+            targetPosition.x = Mathf.Clamp(targetPosition.x, -8f, 8f);
             Quaternion targetRotation = Quaternion.Euler(0, 0, targetRotationZ);
             player.transform.rotation = Quaternion.Lerp(player.transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
 
         private void MovePlayer()
         {
+            targetPosition.x = Mathf.Clamp(targetPosition.x, -8f, 8f);
             player.transform.position = Vector3.MoveTowards(player.transform.position, targetPosition, moveSpeed * Time.deltaTime);
         }
 

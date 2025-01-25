@@ -64,7 +64,7 @@ Material:
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Offset: {x: 0, y: 0.25305158}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -144,7 +144,7 @@ Material:
     - _ZWrite: 1
     - _bubbleMovementSpeed: -0.28
     - _bubbleRotationSpeed: 1.51
-    - _offset: 0
+    - _offset: 1
     - _squareOffset: -0.02
     - _waveSpeed: -0.2
     m_Colors:

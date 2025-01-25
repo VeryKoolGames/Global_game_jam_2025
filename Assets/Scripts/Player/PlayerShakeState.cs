@@ -74,7 +74,7 @@ namespace Player
                 Vector3 offset = new Vector3(0, -3f, 0);
 
                 Vector3 newPosition = new Vector3(
-                    mouseWorldPosition.x,
+                    Mathf.Clamp(mouseWorldPosition.x, -5f, 5f),
                     mouseWorldPosition.y + offset.y,
                     player.transform.position.z
                 );

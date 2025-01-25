@@ -16,11 +16,11 @@ namespace Player
         [SerializeField] private GameListener onPlayerDeathEvent;
         [SerializeField] private EndGameCanvasManager endGameCanvas;
 
-        public void Update()
+        public void FixedUpdate()
         {
             if (!shouldCountScore) return;
             score += Time.deltaTime * playerSpeed;
-            scoreText.text = "Score: " + (int)score;
+            scoreText.text = (int)score + "m";
         }
         
         private void OnPlayerDeath()
