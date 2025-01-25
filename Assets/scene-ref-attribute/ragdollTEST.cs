@@ -22,7 +22,8 @@ public class ragdollTEST : MonoBehaviour
             Vector3 direction = (target.position - rb.position).normalized;
 
             // Appliquer la force dans cette direction
-            rb.AddForce(direction * forceAmount, ForceMode.Impulse);
+            // rb.AddForce(direction * forceAmount, ForceMode.Force);
+            rb.velocity = direction * forceAmount;
             // Vous pouvez utiliser ForceMode.Impulse pour un effet instantané
         }
     }
