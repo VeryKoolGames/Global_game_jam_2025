@@ -23,6 +23,7 @@ namespace Player
         
         [Header("Fly State")]
         [SerializeField] private GameListener refuelListener;
+        [SerializeField] private OnFlyStartEvent onFlyStartEvent;
         
         [Header("Ready to Fly State")]
         [SerializeField] private Transform readyToFlyTransform;
@@ -38,7 +39,7 @@ namespace Player
             IdleState = new PlayerIdleState();
             FlyState = new PlayerFlyState();
             ReadyToFlyState = new PlayerReadyToFlyState();
-            FlyState.Initialize(gameObject, playerAnimator, refuelListener, this);
+            FlyState.Initialize(gameObject, playerAnimator, refuelListener, this, onFlyStartEvent);
             ShakeState.Initialize(gameObject, shakeText, ragdollManager, stopDragListener);
             ReadyToFlyState.Initialize(this, ragdollManager, playerAnimator, readyToFlyTransform.position, gameObject);
             IdleState.Initialize(playerAnimator);

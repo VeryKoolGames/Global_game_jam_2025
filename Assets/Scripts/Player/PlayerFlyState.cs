@@ -17,15 +17,17 @@ namespace Player
         public float TotalFuel { get; private set; }
         private GameListener refuelListener;
         private PlayerStateManager _playerStateManager;
+        private OnFlyStartEvent onFlyStartEvent;
 
 
-        public void Initialize(GameObject player, Animator playerAnimator, GameListener refuelListener, PlayerStateManager _playerStateManager)
+        public void Initialize(GameObject player, Animator playerAnimator, GameListener refuelListener, PlayerStateManager _playerStateManager, OnFlyStartEvent onFlyStartEvent)
         {
             this.player = player;
             this.playerAnimator = playerAnimator;
             this.refuelListener = refuelListener;
             this.refuelListener.Response.AddListener(refillFuel);
             this._playerStateManager = _playerStateManager;
+            this.onFlyStartEvent = onFlyStartEvent;
         }
         public override Task Enter()
         {
@@ -33,6 +35,7 @@ namespace Player
             Debug.Log("Entered Fly state.");
             targetPosition = player.transform.position;
             playerAnimator.CrossFade("Flying", 0.8f);
+            onFlyStartEvent.Raise(TotalFuel);
             return Task.CompletedTask;
         }
         
