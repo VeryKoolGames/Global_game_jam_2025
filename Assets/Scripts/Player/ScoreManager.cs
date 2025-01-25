@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Events;
 using TMPro;
 using UnityEngine;
@@ -12,12 +13,28 @@ namespace Player
         private bool shouldCountScore = false;
         [SerializeField] private OnFlyStartListener onFlyStartListener;
         [SerializeField] private TextMeshProUGUI scoreText;
+        [SerializeField] private GameListener onPlayerDeathEvent;
+        [SerializeField] private EndGameCanvasManager endGameCanvas;
 
         public void Update()
         {
             if (!shouldCountScore) return;
             score += Time.deltaTime * playerSpeed;
             scoreText.text = "Score: " + (int)score;
+        }
+        
+        private void OnPlayerDeath()
+        {
+            playerSpeed = 0;
+            shouldCountScore = false;
+            StartCoroutine(WaitBeforeOpeningCanvas());
+        }
+
+        private IEnumerator WaitBeforeOpeningCanvas()
+        {
+            yield return new WaitForSeconds(5);
+            endGameCanvas.gameObject.SetActive(true);
+            endGameCanvas.SetPlayerScore(score);
         }
         
         private void StartCountingScore(float speed)
@@ -29,11 +46,13 @@ namespace Player
         private void OnEnable()
         {
             onFlyStartListener.Response.AddListener(StartCountingScore);
+            onPlayerDeathEvent.Response.AddListener(OnPlayerDeath);
         }
         
         private void OnDisable()
         {
             onFlyStartListener.Response.RemoveListener(StartCountingScore);
+            onPlayerDeathEvent.Response.RemoveListener(OnPlayerDeath);
         }
     }
 }

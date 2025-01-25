@@ -5,7 +5,7 @@ public class RagdollManager : MonoBehaviour
     private Rigidbody[] ragdollBodies;
     private Collider[] ragdollColliders;
     private Animator animator;
-    public Rigidbody _mainRb;
+    public Rigidbody[] _rbToApplyForce;
 
     private void Start()
     {
@@ -33,11 +33,15 @@ public class RagdollManager : MonoBehaviour
     
     public void ShakeRagdoll(Vector3 dragPosition, Vector3 previousDragPosition)
     {
+        Debug.Log("Shake Ragdoll");
         Vector3 direction = (dragPosition - previousDragPosition).normalized;
 
         float magnitude = (dragPosition - previousDragPosition).magnitude;
-
-        _mainRb.AddForce(direction * magnitude * 50f, ForceMode.Impulse);
+        
+        foreach (var rb in _rbToApplyForce)
+        {
+            rb.AddForce(direction * magnitude * 50f, ForceMode.Impulse);
+        }
     }
 
     public void DisableRagdoll()

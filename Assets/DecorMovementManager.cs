@@ -56,7 +56,7 @@ public class DecorMovementManager : MonoBehaviour
     {
         if (_currentSpeed > 0)
         {
-            _currentSpeed -= _decelerationRate * Time.deltaTime;
+            _currentSpeed -= _decelerationRate * Time.deltaTime * 5;
 
             transform.position += Vector3.back * (_currentSpeed * Time.deltaTime);
         }

@@ -7,16 +7,13 @@ namespace Player
     public class PlayerDeathState : PlayerState
     {
         private RagdollManager _ragdollManager;
-        private GameEvent playerDeathEvent;
-        public void Initialize(RagdollManager _ragdollManager, GameEvent playerDeathEvent)
+        public void Initialize(RagdollManager _ragdollManager)
         {
             this._ragdollManager = _ragdollManager;
-            this.playerDeathEvent = playerDeathEvent;
         }
         
         public override Task Enter()
         {
-            playerDeathEvent.Raise();
             _ragdollManager.EnableRagdoll();
             return Task.CompletedTask;
         }

@@ -18,10 +18,13 @@ namespace Player
         private GameListener refuelListener;
         private PlayerStateManager _playerStateManager;
         private OnFlyStartEvent onFlyStartEvent;
+        private GameEvent onPlayerDeathEvent;
 
 
-        public void Initialize(GameObject player, Animator playerAnimator, GameListener refuelListener, PlayerStateManager _playerStateManager, OnFlyStartEvent onFlyStartEvent)
+        public void Initialize(GameObject player, Animator playerAnimator,
+            GameListener refuelListener, PlayerStateManager _playerStateManager, OnFlyStartEvent onFlyStartEvent, GameEvent onPlayerDeathEvent)
         {
+            this.onPlayerDeathEvent = onPlayerDeathEvent;
             this.player = player;
             this.playerAnimator = playerAnimator;
             this.refuelListener = refuelListener;
@@ -51,7 +54,7 @@ namespace Player
             TotalFuel -= Time.deltaTime;
             if (TotalFuel <= 0)
             {
-                _playerStateManager.StateMachine.ChangeState(_playerStateManager.IdleState);
+                onPlayerDeathEvent.Raise();
             }
         }
 

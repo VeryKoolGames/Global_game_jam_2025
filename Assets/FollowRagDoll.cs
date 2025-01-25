@@ -3,10 +3,11 @@ using UnityEngine;
 public class FollowRagDoll : MonoBehaviour
 {
     [SerializeField] private Transform ragdollRoot;
-    [SerializeField] private Collider playerCollider;
     
     private void LateUpdate()
     {
-        playerCollider.transform.position = ragdollRoot.position;
+        Vector3 ragdollRootPosition = ragdollRoot.position;
+        ragdollRootPosition.z = 0;
+        transform.position = ragdollRootPosition;
     }
 }
