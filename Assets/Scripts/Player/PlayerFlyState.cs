@@ -67,7 +67,7 @@ namespace Player
         {
             HandleInput();
             MovePlayer();
-            TotalFuel -= Time.deltaTime;
+            TotalFuel -= Time.deltaTime * 10;
             UpdateMaterialOffset();
             if (TotalFuel <= 0)
             {
@@ -81,22 +81,23 @@ namespace Player
 
             if (Input.GetKey(KeyCode.A))
             {
-                targetPosition += Vector3.left * moveSpeed * Time.deltaTime;
+                targetPosition += Vector3.left * (moveSpeed * Time.deltaTime);
                 targetRotationZ = rotationAmount;
 
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                targetPosition += Vector3.right * moveSpeed * Time.deltaTime;
+                targetPosition += Vector3.right * (moveSpeed * Time.deltaTime);
                 targetRotationZ = -rotationAmount;
-
             }
+            targetPosition.x = Mathf.Clamp(targetPosition.x, -8f, 8f);
             Quaternion targetRotation = Quaternion.Euler(0, 0, targetRotationZ);
             player.transform.rotation = Quaternion.Lerp(player.transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
 
         private void MovePlayer()
         {
+            targetPosition.x = Mathf.Clamp(targetPosition.x, -8f, 8f);
             player.transform.position = Vector3.MoveTowards(player.transform.position, targetPosition, moveSpeed * Time.deltaTime);
         }
 

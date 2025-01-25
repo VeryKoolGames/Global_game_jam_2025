@@ -5,7 +5,7 @@ public class DecorMovementManager : MonoBehaviour
 {
     private bool _shouldMove = false;
     private bool _shouldStop = false;
-    private float _currentSpeed = 50f;
+    private float _currentSpeed;
     private float _decelerationRate = 10f;
     [SerializeField] private OnFlyStartListener onFlyStartListener;
     [SerializeField] private GameListener onPlayerDeathEvent;
@@ -29,7 +29,7 @@ public class DecorMovementManager : MonoBehaviour
         _shouldStop = false;
     }
     
-    public void StopMoving()
+    private void StopMoving()
     {
         _shouldMove = false;
         _shouldStop = true;

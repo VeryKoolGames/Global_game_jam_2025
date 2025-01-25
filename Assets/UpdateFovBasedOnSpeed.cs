@@ -7,6 +7,7 @@ public class UpdateFovBasedOnSpeed : MonoBehaviour
 {
     [SerializeField] private OnFlyStartListener onFlyStartListener;
     [SerializeField] private GameListener onPlayerDeathEvent;
+    [SerializeField] private GameObject player;
     void Start()
     {
         onFlyStartListener.Response.AddListener(UpdatePov);
@@ -36,6 +37,7 @@ public class UpdateFovBasedOnSpeed : MonoBehaviour
     private void SetPovToDeath()
     {
         Camera.main.DOFieldOfView(100f, 0.5f);
+        this.transform.SetParent(player.transform);
     }
     
     private void OnDisable()

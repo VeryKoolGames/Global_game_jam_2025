@@ -14,6 +14,7 @@ public class RagdollManager : MonoBehaviour
         animator = GetComponent<Animator>();
 
         DisableRagdoll();
+        EnableZConstraint();
     }
 
     public void EnableRagdoll()
@@ -64,6 +65,14 @@ public class RagdollManager : MonoBehaviour
         foreach (var rb in ragdollBodies)
         {
             rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
+        }
+    }
+    
+    private void EnableZConstraint()
+    {
+        foreach (var rb in ragdollBodies)
+        {
+            rb.constraints |= RigidbodyConstraints.FreezePositionZ;
         }
     }
     

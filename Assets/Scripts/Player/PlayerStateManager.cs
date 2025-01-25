@@ -21,6 +21,7 @@ namespace Player
         private TextMeshProUGUI shakeText;
         [SerializeField] private RagdollManager ragdollManager;
         [SerializeField] private GameListener stopDragListener;
+        [SerializeField] private Rigidbody targetRigidbody;
         
         [Header("Fly State")]
         [SerializeField] private GameListener refuelListener;
@@ -37,6 +38,7 @@ namespace Player
 
         public void Start()
         {
+            bottleMaterial.SetFloat("_offset", 0);
             playerDeathListener.Response.AddListener(OnPlayerDeath);
             changeStateListener.Response.AddListener(ChangeState);
             StateMachine = new PlayerStateMachine();
