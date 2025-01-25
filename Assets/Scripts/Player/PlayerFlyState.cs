@@ -55,7 +55,7 @@ namespace Player
 
         private void SetPlayerHeight()
         {
-            player.transform.position = new Vector3(player.transform.position.x, 2, player.transform.position.z);
+            player.transform.position = new Vector3(player.transform.position.x, 2.5f, player.transform.position.z);
         }
         
         private void refillFuel()
