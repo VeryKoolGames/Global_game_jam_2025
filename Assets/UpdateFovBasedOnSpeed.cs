@@ -40,7 +40,7 @@ public class UpdateFovBasedOnSpeed : MonoBehaviour
         this.transform.SetParent(player.transform);
     }
     
-    private void OnDisable()
+    private void OnDestroy()
     {
         onFlyStartListener.Response.RemoveListener(UpdatePov);
         onPlayerDeathEvent.Response.RemoveListener(SetPovToDeath);
