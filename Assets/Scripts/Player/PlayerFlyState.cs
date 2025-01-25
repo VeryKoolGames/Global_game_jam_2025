@@ -20,12 +20,14 @@ namespace Player
         private OnFlyStartEvent onFlyStartEvent;
         private GameEvent onPlayerDeathEvent;
         private Material bottleMaterial;
+        private GameObject goObject;
 
 
         public void Initialize(GameObject player, Animator playerAnimator,
             GameListener refuelListener, PlayerStateManager _playerStateManager,
-            OnFlyStartEvent onFlyStartEvent, GameEvent onPlayerDeathEvent, Material bottleMaterial)
+            OnFlyStartEvent onFlyStartEvent, GameEvent onPlayerDeathEvent, Material bottleMaterial, GameObject goObject)
         {
+            this.goObject = goObject;
             this.bottleMaterial = bottleMaterial;
             this.onPlayerDeathEvent = onPlayerDeathEvent;
             this.player = player;
@@ -46,6 +48,7 @@ namespace Player
         {
             TotalFuel = 100;
             Debug.Log("Entered Fly state.");
+            goObject.SetActive(true);
             SetPlayerHeight();
             targetPosition = player.transform.position;
             playerAnimator.Play("Flying");
@@ -55,7 +58,7 @@ namespace Player
 
         private void SetPlayerHeight()
         {
-            player.transform.position = new Vector3(player.transform.position.x, 2, player.transform.position.z);
+            player.transform.position = new Vector3(player.transform.position.x, 2.5f, player.transform.position.z);
         }
         
         private void refillFuel()
