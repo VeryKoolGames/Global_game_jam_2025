@@ -15,6 +15,7 @@ namespace Player
         public override Task Enter()
         {
             _ragdollManager.EnableRagdoll();
+            _ragdollManager.RemoveYConstraint();
             return Task.CompletedTask;
         }
 
