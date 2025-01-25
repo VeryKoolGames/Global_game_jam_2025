@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Events;
 using UnityEngine;
+using Vector3 = System.Numerics.Vector3;
 
 public class UpdateFovBasedOnSpeed : MonoBehaviour
 {
@@ -20,7 +21,16 @@ public class UpdateFovBasedOnSpeed : MonoBehaviour
         float scalePov = Mathf.Clamp(speed / 2, 0f, 20f);
         float targetFov = Mathf.Clamp(baseFov + scalePov, baseFov, maxFov);
         Debug.Log("targetFov: " + targetFov);
+        UpdateCameraZoom();
         Camera.main.DOFieldOfView(targetFov, 0.5f);
+        
+    }
+
+    private void UpdateCameraZoom()
+    {
+        UnityEngine.Vector3 cameraPosition = Camera.main.transform.position;
+        cameraPosition.z = -6.5f;
+        gameObject.transform.DOMove(cameraPosition, 0.5f);
     }
     
     private void SetPovToDeath()

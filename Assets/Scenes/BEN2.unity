@@ -3340,23 +3340,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb1c1f7afdb449368db17fc6ba4b118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decorRightPrefabs:
-  - {fileID: 4593493708845341772, guid: 0457e5c54fc094d3391d219aee3155fb, type: 3}
-  decorLeftPrefabs:
-  - {fileID: 4593493708845341772, guid: 0457e5c54fc094d3391d219aee3155fb, type: 3}
-  decorBehindPrefabs: []
-  decorRightSpawnPoints:
-  - {fileID: 215102877}
-  - {fileID: 2121602050}
-  - {fileID: 531145322}
-  - {fileID: 1598343350}
-  decorLeftSpawnPoints:
-  - {fileID: 819969424}
-  - {fileID: 1890668450}
-  - {fileID: 939097284}
-  - {fileID: 732804344}
-  - {fileID: 485090188}
-  decorBehindSpawnPoints: []
   targetTransform: {fileID: 2051292830}
 --- !u!4 &655739132
 Transform:
@@ -3663,6 +3646,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFlyStartListener: {fileID: 677739984}
   scoreText: {fileID: 1380153615}
+  onPlayerDeathEvent: {fileID: 0}
+  endGameCanvas: {fileID: 0}
 --- !u!4 &681330205 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2463723311367149124, guid: 17f919020c56c481594e303b7b222682, type: 3}
@@ -8112,6 +8097,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CANON
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 80cae8e12cd0b4d63b336905040f0739, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1129496810705857465, guid: 80cae8e12cd0b4d63b336905040f0739, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -9576,6 +9565,8 @@ MonoBehaviour:
   onFlyStartEvent: {fileID: 11400000, guid: e559ad77a5a96426887f33a1cfdd16b7, type: 2}
   readyToFlyTransform: {fileID: 210423621}
   playerAnimator: {fileID: 1757796055}
+  playerDeathListener: {fileID: 0}
+  onPlayerDeathEvent: {fileID: 0}
 --- !u!65 &1730668230
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9842,7 +9833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d42145284c5408e860746e7db05ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainRb: {fileID: 879739453}
+  _rbToApplyForce: []
 --- !u!95 &1757796055
 Animator:
   serializedVersion: 7
@@ -11490,6 +11481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onFlyStartListener: {fileID: 2013866033}
+  onPlayerDeathEvent: {fileID: 0}
 --- !u!1 &2016580233 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3086436065929644917, guid: 18d3a5780af3b4b419e27af3069d201d, type: 3}
@@ -11705,6 +11697,8 @@ MonoBehaviour:
   onFlyStartEvent: {fileID: 0}
   readyToFlyTransform: {fileID: 0}
   playerAnimator: {fileID: 0}
+  playerDeathListener: {fileID: 0}
+  onPlayerDeathEvent: {fileID: 0}
 --- !u!114 &2054451532
 MonoBehaviour:
   m_ObjectHideFlags: 0

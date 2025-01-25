@@ -10,16 +10,19 @@ namespace Player
         private PlayerStateManager playerStateManager;
         private RagdollManager _ragdollManager;
         private Animator _playerAnimator;
-        Vector3 targetPosition;
+        Transform targetTransform;
         private GameObject player;
+        private Animator canonAnimator;
         
 
-        public void Initialize(PlayerStateManager playerStateManager, RagdollManager ragdollManager, Animator playerAnimator, Vector3 targetPos, GameObject player)
+        public void Initialize(PlayerStateManager playerStateManager, RagdollManager ragdollManager,
+            Animator playerAnimator, Transform targetTransform, GameObject player, Animator canonAnimator)
         {
+            this.canonAnimator = canonAnimator;
             this.playerStateManager = playerStateManager;
             this._ragdollManager = ragdollManager;
             this._playerAnimator = playerAnimator;
-            this.targetPosition = targetPos;
+            this.targetTransform = targetTransform;
             this.player = player;
         }
         public override async Task Enter()
@@ -27,12 +30,14 @@ namespace Player
             Debug.Log("Entered ReadyToFly state.");
             _ragdollManager.EnableRagdoll();
             _ragdollManager.RemoveYConstraint();
-            await Task.Delay(2000);
+            canonAnimator.Play("Plateforme_OPEN");
+            await Task.Delay(4000);
             _ragdollManager.DisableRagdoll();
-            _playerAnimator.Play("ReadyToFlyAnim");
-            player.transform.DOMove(targetPosition, 5f);
-            await Task.Delay(5000);
-            
+            // player.gameObject.transform.position = targetTransform.position;
+            player.gameObject.transform.SetParent(targetTransform);
+            player.gameObject.transform.position = Vector3.zero;
+            await Task.Delay(4500);
+            player.transform.SetParent(null);
             playerStateManager.StateMachine.ChangeState(playerStateManager.FlyState);
         }
 

@@ -19,11 +19,14 @@ namespace Player
         private PlayerStateManager _playerStateManager;
         private OnFlyStartEvent onFlyStartEvent;
         private GameEvent onPlayerDeathEvent;
+        private Material bottleMaterial;
 
 
         public void Initialize(GameObject player, Animator playerAnimator,
-            GameListener refuelListener, PlayerStateManager _playerStateManager, OnFlyStartEvent onFlyStartEvent, GameEvent onPlayerDeathEvent)
+            GameListener refuelListener, PlayerStateManager _playerStateManager,
+            OnFlyStartEvent onFlyStartEvent, GameEvent onPlayerDeathEvent, Material bottleMaterial)
         {
+            this.bottleMaterial = bottleMaterial;
             this.onPlayerDeathEvent = onPlayerDeathEvent;
             this.player = player;
             this.playerAnimator = playerAnimator;
@@ -32,14 +35,27 @@ namespace Player
             this._playerStateManager = _playerStateManager;
             this.onFlyStartEvent = onFlyStartEvent;
         }
+
+        private void UpdateMaterialOffset()
+        {
+            float normalizedFuel = Mathf.Clamp01(TotalFuel / 100f);
+            bottleMaterial.SetFloat("_offset", 1 - normalizedFuel);
+        }
+        
         public override Task Enter()
         {
             TotalFuel = 100;
             Debug.Log("Entered Fly state.");
+            SetPlayerHeight();
             targetPosition = player.transform.position;
-            playerAnimator.CrossFade("Flying", 0.8f);
+            playerAnimator.Play("Flying");
             onFlyStartEvent.Raise(TotalFuel);
             return Task.CompletedTask;
+        }
+
+        private void SetPlayerHeight()
+        {
+            player.transform.position = new Vector3(player.transform.position.x, 2, player.transform.position.z);
         }
         
         private void refillFuel()
@@ -52,6 +68,7 @@ namespace Player
             HandleInput();
             MovePlayer();
             TotalFuel -= Time.deltaTime;
+            UpdateMaterialOffset();
             if (TotalFuel <= 0)
             {
                 onPlayerDeathEvent.Raise();
