@@ -3,6 +3,7 @@ using Events;
 using KBCore.Refs;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Player
 {
@@ -22,11 +23,14 @@ namespace Player
         [SerializeField] private RagdollManager ragdollManager;
         [SerializeField] private GameListener stopDragListener;
         [SerializeField] private Rigidbody targetRigidbody;
+        [SerializeField] private Volume postProcessingVolume;
+        [SerializeField] private ParticleSystem bubbleParticleSystem;
         
         [Header("Fly State")]
         [SerializeField] private GameListener refuelListener;
         [SerializeField] private OnFlyStartEvent onFlyStartEvent;
         [SerializeField] private Material bottleMaterial;
+        [SerializeField] private GameObject GoObject;
         
         [Header("Ready to Fly State")]
         [SerializeField] private Transform readyToFlyTransform;
@@ -49,8 +53,8 @@ namespace Player
             DeathState = new PlayerDeathState();
             DeathState.Initialize(ragdollManager);
             FlyState.Initialize(gameObject, playerAnimator, refuelListener, this,
-                onFlyStartEvent, onPlayerDeathEvent, bottleMaterial);
-            ShakeState.Initialize(gameObject, shakeText, ragdollManager, stopDragListener);
+                onFlyStartEvent, onPlayerDeathEvent, bottleMaterial, GoObject);
+            ShakeState.Initialize(gameObject, shakeText, ragdollManager, stopDragListener, bubbleParticleSystem, postProcessingVolume);
             ReadyToFlyState.Initialize(this, ragdollManager, playerAnimator, readyToFlyTransform, gameObject, canonAnimimator);
             IdleState.Initialize(playerAnimator);
             StateMachine.Initialize(IdleState);

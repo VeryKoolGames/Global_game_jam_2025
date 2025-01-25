@@ -36,7 +36,7 @@ namespace Player
             // player.gameObject.transform.position = targetTransform.position;
             player.gameObject.transform.SetParent(targetTransform);
             player.gameObject.transform.position = Vector3.zero;
-            await Task.Delay(4500);
+            await Task.Delay(4700);
             player.transform.SetParent(null);
             playerStateManager.StateMachine.ChangeState(playerStateManager.FlyState);
         }
