@@ -12,6 +12,7 @@ namespace Player
         public PlayerShakeState ShakeState{ get; private set; }
         public PlayerIdleState IdleState { get; private set; }
         public PlayerFlyState FlyState { get; private set; }
+        public PlayerDeathState DeathState { get; private set; }
         public PlayerReadyToFlyState ReadyToFlyState { get; private set; }
         public PlayerStateEnum currentStateEnum { get; private set; }
         [SerializeField, Self] ChangeStateListener changeStateListener;
@@ -30,25 +31,41 @@ namespace Player
         
         
         [SerializeField] private Animator playerAnimator;
+        [SerializeField] private GameListener playerDeathListener;
+        [SerializeField] private GameEvent onPlayerDeathEvent;
 
         public void Start()
         {
+            playerDeathListener.Response.AddListener(OnPlayerDeath);
             changeStateListener.Response.AddListener(ChangeState);
             StateMachine = new PlayerStateMachine();
             ShakeState = new PlayerShakeState();
             IdleState = new PlayerIdleState();
             FlyState = new PlayerFlyState();
             ReadyToFlyState = new PlayerReadyToFlyState();
-            FlyState.Initialize(gameObject, playerAnimator, refuelListener, this, onFlyStartEvent);
+            DeathState = new PlayerDeathState();
+            DeathState.Initialize(ragdollManager);
+            FlyState.Initialize(gameObject, playerAnimator, refuelListener, this, onFlyStartEvent, onPlayerDeathEvent);
             ShakeState.Initialize(gameObject, shakeText, ragdollManager, stopDragListener);
             ReadyToFlyState.Initialize(this, ragdollManager, playerAnimator, readyToFlyTransform.position, gameObject);
             IdleState.Initialize(playerAnimator);
             StateMachine.Initialize(IdleState);
         }
+        
+        private void OnPlayerDeath()
+        {
+            StateMachine.ChangeState(DeathState);
+        }
 
         public void FixedUpdate()
         {
             StateMachine.Update();
+        }
+
+        private void OnDisable()
+        {
+            playerDeathListener.Response.RemoveListener(OnPlayerDeath);
+            changeStateListener.Response.RemoveListener(ChangeState);
         }
 
         private void ChangeState(PlayerStateEnum state)
