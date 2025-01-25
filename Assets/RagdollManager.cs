@@ -33,14 +33,11 @@ public class RagdollManager : MonoBehaviour
     
     public void ShakeRagdoll(Vector3 dragPosition, Vector3 previousDragPosition)
     {
-        // Calculate the direction of movement
         Vector3 direction = (dragPosition - previousDragPosition).normalized;
 
-        // Calculate the magnitude of the movement
         float magnitude = (dragPosition - previousDragPosition).magnitude;
 
-        // Apply force to the main rigidbody in the calculated direction
-        _mainRb.AddForce(direction * magnitude * 10f, ForceMode.Impulse);
+        _mainRb.AddForce(direction * magnitude * 50f, ForceMode.Impulse);
     }
 
     public void DisableRagdoll()
@@ -55,6 +52,22 @@ public class RagdollManager : MonoBehaviour
         foreach (var col in ragdollColliders)
         {
             col.enabled = false;
+        }
+    }
+
+    public void RemoveYConstraint()
+    {
+        foreach (var rb in ragdollBodies)
+        {
+            rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
+        }
+    }
+    
+    public void EnableYConstraint()
+    {
+        foreach (var rb in ragdollBodies)
+        {
+            rb.constraints |= RigidbodyConstraints.FreezePositionY;
         }
     }
 }

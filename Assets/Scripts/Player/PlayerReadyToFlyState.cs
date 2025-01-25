@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using DG.Tweening;
 using Events;
 using UnityEngine;
 
@@ -7,39 +8,41 @@ namespace Player
     public class PlayerReadyToFlyState : PlayerState
     {
         private PlayerStateManager playerStateManager;
-        private GameListener refuelListener;
-        public float TotalFuel { get; private set; }
+        private RagdollManager _ragdollManager;
+        private Animator _playerAnimator;
+        Vector3 targetPosition;
+        private GameObject player;
+        
 
-        public void Initialize(PlayerStateManager playerStateManager, GameListener refuelListener)
+        public void Initialize(PlayerStateManager playerStateManager, RagdollManager ragdollManager, Animator playerAnimator, Vector3 targetPos, GameObject player)
         {
             this.playerStateManager = playerStateManager;
-            this.refuelListener = refuelListener;
-            this.refuelListener.Response.AddListener(refillFuel);
+            this._ragdollManager = ragdollManager;
+            this._playerAnimator = playerAnimator;
+            this.targetPosition = targetPos;
+            this.player = player;
         }
         public override async Task Enter()
         {
             Debug.Log("Entered ReadyToFly state.");
-            await Task.Delay(100);
+            _ragdollManager.EnableRagdoll();
+            _ragdollManager.RemoveYConstraint();
+            await Task.Delay(2000);
+            _ragdollManager.DisableRagdoll();
+            _playerAnimator.Play("ReadyToFlyAnim");
+            player.transform.DOMove(targetPosition, 5f);
+            await Task.Delay(5000);
+            
             playerStateManager.StateMachine.ChangeState(playerStateManager.FlyState);
-        }
-        
-        private void refillFuel()
-        {
-            TotalFuel += 10;
         }
 
         public override void Update()
         {
-            TotalFuel -= Time.deltaTime;
-            if (TotalFuel <= 0)
-            {
-                playerStateManager.StateMachine.ChangeState(playerStateManager.IdleState);
-            }
+            
         }
 
         public override void Exit()
         {
-            this.refuelListener.Response.RemoveListener(refillFuel);
             Debug.Log("Exited ReadyToFly state.");
         }
     }
