@@ -9,6 +9,7 @@ public enum SoundType
     Scream,
     Canon,
     MainMusic,
+    HappyScream,
 }
 
 

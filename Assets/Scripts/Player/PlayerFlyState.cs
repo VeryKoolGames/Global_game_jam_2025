@@ -48,6 +48,7 @@ namespace Player
         {
             TotalFuel = 100;
             Debug.Log("Entered Fly state.");
+            SoundManager.instance.PlaySound(SoundType.HappyScream);
             goObject.SetActive(true);
             SetPlayerHeight();
             targetPosition = player.transform.position;
