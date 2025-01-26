@@ -13,6 +13,7 @@ namespace DefaultNamespace
         {
             if (other.CompareTag("Player"))
             {
+                SoundManager.instance.PlaySound(SoundType.REFILL);
                 onFuelRefill.Raise();
                 particleSystemPowerUp.Play();
                 Destroy(gameObject);

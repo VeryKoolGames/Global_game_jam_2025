@@ -60,6 +60,7 @@ namespace Player
             ReadyToFlyState.Initialize(this, ragdollManager, playerAnimator, readyToFlyTransform, gameObject, canonAnimimator);
             IdleState.Initialize(playerAnimator);
             StateMachine.Initialize(IdleState);
+            SoundManager.instance.PlaySound(SoundType.MUSIC2);
         }
         
         private void OnPlayerDeath()

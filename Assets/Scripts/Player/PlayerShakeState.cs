@@ -157,6 +157,7 @@ namespace Player
             Debug.Log("Exited Shake state.");
             Debug.Log($"Total Shake Force: {_shakeForce}");
             SoundManager.instance.StopSound(SoundType.Shake);
+            SoundManager.instance.StopSound(SoundType.MUSIC2);
         }
     }
 }
