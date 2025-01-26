@@ -46,7 +46,6 @@ public class PauseMenuManager : MonoBehaviour
         Cursor.visible = true;
     }
 
-    // Resumes the game
     private void ResumeGame()
     {
         Time.timeScale = 1f;
