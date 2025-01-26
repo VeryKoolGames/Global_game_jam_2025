@@ -32,6 +32,7 @@ namespace Player
             _ragdollManager.RemoveYConstraint();
             canonAnimator.Play("Plateforme_OPEN");
             await Task.Delay(4000);
+            SoundManager.instance.PlaySound(SoundType.MECHE);
             _ragdollManager.DisableRagdoll();
             player.gameObject.transform.SetParent(targetTransform);
             player.gameObject.transform.position = Vector3.zero;
