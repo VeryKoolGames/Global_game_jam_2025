@@ -33,10 +33,10 @@ namespace Player
             canonAnimator.Play("Plateforme_OPEN");
             await Task.Delay(4000);
             _ragdollManager.DisableRagdoll();
-            // player.gameObject.transform.position = targetTransform.position;
             player.gameObject.transform.SetParent(targetTransform);
             player.gameObject.transform.position = Vector3.zero;
             await Task.Delay(4700);
+            SoundManager.instance.PlaySound(SoundType.MainMusic);
             player.transform.SetParent(null);
             playerStateManager.StateMachine.ChangeState(playerStateManager.FlyState);
         }
@@ -48,6 +48,7 @@ namespace Player
 
         public override void Exit()
         {
+            SoundManager.instance.PlaySound(SoundType.Canon);
             Debug.Log("Exited ReadyToFly state.");
         }
     }
