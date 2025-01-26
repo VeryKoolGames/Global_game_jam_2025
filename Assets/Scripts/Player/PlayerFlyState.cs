@@ -81,7 +81,7 @@ namespace Player
             HandleInput();
             MovePlayer();
             RotateCamera();
-            TotalFuel -= Time.deltaTime;
+            TotalFuel -= Time.deltaTime * 2;
             UpdateMaterialOffset();
             if (TotalFuel <= 0)
             {
