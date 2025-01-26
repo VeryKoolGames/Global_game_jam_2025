@@ -27,6 +27,7 @@ namespace Player
         }
         public override async Task Enter()
         {
+            player.transform.rotation = Quaternion.identity;
             Debug.Log("Entered ReadyToFly state.");
             _ragdollManager.EnableRagdoll();
             _ragdollManager.RemoveYConstraint();
