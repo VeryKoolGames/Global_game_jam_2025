@@ -1648,9 +1648,6 @@ PrefabInstance:
       addedObject: {fileID: 960272530}
     - targetCorrespondingSourceObject: {fileID: 1082271958561512970, guid: 18d3a5780af3b4b419e27af3069d201d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 693659886}
-    - targetCorrespondingSourceObject: {fileID: 1082271958561512970, guid: 18d3a5780af3b4b419e27af3069d201d, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 693659885}
     - targetCorrespondingSourceObject: {fileID: 1082271958561512970, guid: 18d3a5780af3b4b419e27af3069d201d, type: 3}
       insertIndex: -1
@@ -6925,27 +6922,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &693659886
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 693659884}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 4.032328, y: 4.0885277, z: 0.5055747}
-  m_Center: {x: -0.019947052, y: 0.19374442, z: -0.08912575}
 --- !u!114 &693659888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10852,7 +10828,7 @@ Transform:
   m_GameObject: {fileID: 1236292565}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000011920926, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.15, z: -0.0040824413}
+  m_LocalPosition: {x: -0.20000006, y: 7, z: 1.0000005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24085,6 +24061,6 @@ SceneRoots:
   - {fileID: 1526171309}
   - {fileID: 1294956477}
   - {fileID: 555817291}
-  - {fileID: 1236292576}
   - {fileID: 1126971431}
   - {fileID: 1049394188}
+  - {fileID: 1236292576}

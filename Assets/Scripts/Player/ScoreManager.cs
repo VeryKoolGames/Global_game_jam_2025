@@ -41,7 +41,7 @@ namespace Player
 
         private IEnumerator WaitBeforeOpeningCanvas()
         {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(3);
             endGameCanvas.gameObject.SetActive(true);
             endGameCanvas.SetPlayerScore(score);
         }

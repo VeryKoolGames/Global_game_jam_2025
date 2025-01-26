@@ -11,7 +11,7 @@ namespace DefaultNamespace
         [SerializeField] GameEvent onFuelRefill;
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player") || other.CompareTag("PlayerInvincible"))
             {
                 SoundManager.instance.PlaySound(SoundType.REFILL);
                 onFuelRefill.Raise();

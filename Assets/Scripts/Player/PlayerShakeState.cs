@@ -23,12 +23,15 @@ namespace Player
         private float playSoundCounter;
         private float playSoundTotal = 2f;
         private FollowPlayer followPlayer;
+        private Camera mainCamera;
+        private bool isCameraShaking = false;
 
 
         public void Initialize(GameObject player,
             RagdollManager ragdollManager, GameListener stopDragListener,
             ParticleSystem bubbleParticleSystem, Volume postProcessingVolume, FollowPlayer followPlayer)
         {
+            this.mainCamera = Camera.main;
             this.followPlayer = followPlayer;
             this.bubbleParticleSystem = bubbleParticleSystem;
             this.postProcessingVolume = postProcessingVolume;
@@ -129,6 +132,11 @@ namespace Player
                 {
                     chromaticAberration.intensity.value = distanceMoved * 0.1f;
                     _ragdollManager.ShakeRagdoll(newPosition, _previousPosition);
+                    
+                    if (!isCameraShaking)
+                    {
+                        ShakeCamera(distanceMoved);
+                    }
                 }
                 _shakeForce += Mathf.RoundToInt(distanceMoved);
                 var emissionModule = bubbleParticleSystem.emission;
@@ -136,6 +144,13 @@ namespace Player
                 _previousPosition = newPosition;
                 player.transform.position = newPosition;
             }
+        }
+        
+        private void ShakeCamera(float intensity)
+        {
+            isCameraShaking = true;
+            mainCamera.transform.DOShakePosition(0.5f, intensity * 0.1f, 10, 90, false, true)
+                .OnComplete(() => isCameraShaking = false); // Reset flag after shake
         }
         
         private void MoveTowardsOffset(Vector3 newPosition)
