@@ -51,7 +51,7 @@ public class RagdollManager : MonoBehaviour
 
         foreach (var rb in ragdollBodies)
         {
-            rb.isKinematic = true;
+            // rb.isKinematic = true;
         }
 
         foreach (var col in ragdollColliders)

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7705582113096211284}
   - component: {fileID: 4747446186378645423}
-  - component: {fileID: 6074608295329305935}
   - component: {fileID: 7868167596506962316}
+  - component: {fileID: 6466968468596228710}
   m_Layer: 0
   m_Name: ITEM_Boost
   m_TagString: Untagged
@@ -63,20 +63,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6074608295329305935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 633574220674254137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c1964dd4ab64b5a98354f0466baa799, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particleSystemPowerUp: {fileID: 3631526838401143774}
-  onFuelRefill: {fileID: 11400000, guid: f530a5e71ba7549f09a0e6c6e654093f, type: 2}
 --- !u!65 &7868167596506962316
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -98,6 +84,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.6819568, y: 3.648306, z: 3.1238804}
   m_Center: {x: -0.05903697, y: 0.025292397, z: -1.0619402}
+--- !u!114 &6466968468596228710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633574220674254137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab26fd94e2664a19b6b7eb5e8bbcdf87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystemPowerUp: {fileID: 3631526838401143774}
+  onBoostEvent: {fileID: 11400000, guid: 53cd19b60e406414fb3f47767f3b9747, type: 2}
+  timeInvincible: {fileID: 11400000, guid: 01f41d8fa3ced4ba3ac246e205ac4cc3, type: 2}
 --- !u!1 &4260343461541854528
 GameObject:
   m_ObjectHideFlags: 0

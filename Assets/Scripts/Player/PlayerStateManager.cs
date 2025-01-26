@@ -1,6 +1,7 @@
 using System;
 using Events;
 using KBCore.Refs;
+using ScriptableObject;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;

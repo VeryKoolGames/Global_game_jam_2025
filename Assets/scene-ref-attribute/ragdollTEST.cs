@@ -18,13 +18,9 @@ public class ragdollTEST : MonoBehaviour
     {
         if (target != null && rb != null)
         {
-            // Calculer la direction vers la cible
             Vector3 direction = (target.position - rb.position).normalized;
 
-            // Appliquer la force dans cette direction
-            // rb.AddForce(direction * forceAmount, ForceMode.Force);
             rb.linearVelocity = direction * forceAmount;
-            // Vous pouvez utiliser ForceMode.Impulse pour un effet instantané
         }
     }
 }

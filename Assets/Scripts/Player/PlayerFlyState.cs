@@ -1,6 +1,8 @@
+using System.Collections;
 using System.Threading.Tasks;
 using DG.Tweening;
 using Events;
+using ScriptableObject;
 using UnityEngine;
 
 namespace Player
@@ -21,6 +23,7 @@ namespace Player
         private GameEvent onPlayerDeathEvent;
         private Material bottleMaterial;
         private GameObject goObject;
+        private GameListener onBoostListener;
 
 
         public void Initialize(GameObject player, Animator playerAnimator,
@@ -66,6 +69,7 @@ namespace Player
         {
             TotalFuel += 10;
         }
+        
 
         public override void Update()
         {
