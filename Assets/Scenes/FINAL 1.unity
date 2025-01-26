@@ -9100,6 +9100,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Anneau (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bd1b5393ded1a4461879e6b3e8e64ecb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10948,10 +10952,12 @@ MonoBehaviour:
   targetRigidbody: {fileID: 693659885}
   postProcessingVolume: {fileID: 1021853246}
   bubbleParticleSystem: {fileID: 1526171308}
+  followPlayer: {fileID: 0}
   refuelListener: {fileID: 1236292571}
   onFlyStartEvent: {fileID: 11400000, guid: e559ad77a5a96426887f33a1cfdd16b7, type: 2}
   bottleMaterial: {fileID: 2100000, guid: a6447cd6c43834c098c2e0d9c1de20a9, type: 2}
   GoObject: {fileID: 749783680}
+  canvasAnimator: {fileID: 0}
   readyToFlyTransform: {fileID: 989885249}
   canonAnimimator: {fileID: 548196194}
   playerAnimator: {fileID: 960272531}
