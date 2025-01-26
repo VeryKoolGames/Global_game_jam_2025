@@ -35,7 +35,9 @@ namespace Player
         {
             if (score > PlayerPrefs.GetFloat("HighScore", 0))
             {
+                Debug.Log("New High Score: " + score);
                 PlayerPrefs.SetFloat("HighScore", score);
+                PlayerPrefs.Save();
             }
         }
 
