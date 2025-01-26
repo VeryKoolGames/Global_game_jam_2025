@@ -28,10 +28,10 @@ namespace DefaultNamespace
         {
             transform.position += Vector3.back * (speed * Time.deltaTime);
         }
-        
+
         public override void SetSpeed(float speed)
         {
-            this.speed = speed / 5;
+            this.speed = speed;
         }
     }
 }
