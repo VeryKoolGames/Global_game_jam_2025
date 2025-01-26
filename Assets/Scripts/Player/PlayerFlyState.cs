@@ -75,7 +75,7 @@ namespace Player
         {
             HandleInput();
             MovePlayer();
-            TotalFuel -= Time.deltaTime * 10;
+            TotalFuel -= Time.deltaTime;
             UpdateMaterialOffset();
             if (TotalFuel <= 0)
             {

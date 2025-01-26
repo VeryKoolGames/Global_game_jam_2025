@@ -26,7 +26,7 @@ namespace DefaultNamespace
         
         public override void SetSpeed(float speed)
         {
-            this.speed = speed / 5;
+            this.speed = speed;
         }
     }
 
