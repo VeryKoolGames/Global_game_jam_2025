@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Events;
+using Player;
 using ScriptableObject;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -18,15 +19,9 @@ namespace DefaultNamespace
             {
                 onBoostEvent.Raise();
                 particleSystemPowerUp.Play();
+                other.GetComponent<PlayerInvincibilityManager>().MakePlayerInvincible();
                 Destroy(gameObject);
             }
-        }
-
-        private IEnumerator makePlayerInvincible(GameObject player)
-        {
-            player.tag = "";
-            yield return new WaitForSeconds(timeInvincible.value);
-            player.tag = "Player";
         }
 
         private void Update()

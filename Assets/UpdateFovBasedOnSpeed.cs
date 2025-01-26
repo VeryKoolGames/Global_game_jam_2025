@@ -1,5 +1,7 @@
+using System.Collections;
 using DG.Tweening;
 using Events;
+using ScriptableObject;
 using UnityEngine;
 using Vector3 = System.Numerics.Vector3;
 
@@ -8,10 +10,13 @@ public class UpdateFovBasedOnSpeed : MonoBehaviour
     [SerializeField] private OnFlyStartListener onFlyStartListener;
     [SerializeField] private GameListener onPlayerDeathEvent;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameListener onBoostStartEvent;
+    [SerializeField] private SOFloatVariable timeInvincible;
     void Start()
     {
         onFlyStartListener.Response.AddListener(UpdatePov);
         onPlayerDeathEvent.Response.AddListener(SetPovToDeath);
+        onBoostStartEvent.Response.AddListener(UpdatePovWhenBoost);
     }
 
     private void UpdatePov(float speed)
@@ -25,6 +30,19 @@ public class UpdateFovBasedOnSpeed : MonoBehaviour
         UpdateCameraZoom();
         Camera.main.DOFieldOfView(targetFov, 0.5f);
         
+    }
+
+    private void UpdatePovWhenBoost()
+    {
+        StartCoroutine(SetPovForBoost());
+    }
+
+    IEnumerator SetPovForBoost()
+    {
+        float baseFov = Camera.main.fieldOfView;
+        Camera.main.DOFieldOfView(100f, 0.5f);
+        yield return new WaitForSeconds(timeInvincible.value);
+        Camera.main.DOFieldOfView(baseFov, 0.5f);
     }
 
     private void UpdateCameraZoom()
