@@ -27,7 +27,16 @@ namespace Player
         {
             playerSpeed = 0;
             shouldCountScore = false;
+            SaveHighScore();
             StartCoroutine(WaitBeforeOpeningCanvas());
+        }
+        
+        private void SaveHighScore()
+        {
+            if (score > PlayerPrefs.GetFloat("HighScore", 0))
+            {
+                PlayerPrefs.SetFloat("HighScore", score);
+            }
         }
 
         private IEnumerator WaitBeforeOpeningCanvas()

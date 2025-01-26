@@ -10,6 +10,7 @@ public enum SoundType
     Canon,
     MainMusic,
     HappyScream,
+    MECHE,
 }
 
 

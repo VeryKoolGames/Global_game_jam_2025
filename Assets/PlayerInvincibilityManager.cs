@@ -12,7 +12,7 @@ public class PlayerInvincibilityManager : MonoBehaviour
         
     private IEnumerator makePlayerInvincible(GameObject player)
     {
-        player.tag = "";
+        player.tag = "PlayerInvincible";
         yield return new WaitForSeconds(timeInvincible.value);
         player.tag = "Player";
     }

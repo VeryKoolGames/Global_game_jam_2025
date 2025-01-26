@@ -35,7 +35,9 @@ namespace Player
             _ragdollManager.DisableRagdoll();
             player.gameObject.transform.SetParent(targetTransform);
             player.gameObject.transform.position = Vector3.zero;
-            await Task.Delay(4700);
+            await Task.Delay(2000);
+            SoundManager.instance.PlaySound(SoundType.MECHE);
+            await Task.Delay(2700);
             SoundManager.instance.PlaySound(SoundType.MainMusic);
             player.transform.SetParent(null);
             playerStateManager.StateMachine.ChangeState(playerStateManager.FlyState);
