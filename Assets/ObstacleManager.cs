@@ -10,6 +10,7 @@ public class ObstacleManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player hit an obstacle.");
+            SoundManager.instance.PlaySound(SoundType.Death);
             PlayerDeathEvent.Raise();
         }
     }

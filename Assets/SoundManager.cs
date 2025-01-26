@@ -5,7 +5,8 @@ using UnityEngine;
 public enum SoundType
 {
     Death,
-    Effect,
+    Shake,
+    Scream,
     Canon,
     MainMusic,
 }
@@ -43,5 +44,19 @@ public class SoundManager : MonoBehaviour
             return;
         }
         sound.clips[UnityEngine.Random.Range(0, sound.clips.Count)].Play();
+    }
+    
+    public void StopSound(SoundType soundType)
+    {
+        Sound sound = sounds.Find(s => s.name == soundType);
+        if (sound == null)
+        {
+            Debug.LogWarning("Sound: " + soundType + " not found!");
+            return;
+        }
+        foreach (var clip in sound.clips)
+        {
+            clip.Stop();
+        }
     }
 }

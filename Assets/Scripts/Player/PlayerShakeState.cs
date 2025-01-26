@@ -21,6 +21,8 @@ namespace Player
         private Volume postProcessingVolume;
         private float baseEmission;
         private ChromaticAberration chromaticAberration;
+        private float playSoundCounter;
+        private float playSoundTotal = 2f;
 
 
         public void Initialize(GameObject player, TextMeshProUGUI shakeForceText,
@@ -38,6 +40,7 @@ namespace Player
         
         public override async Task Enter()
         {
+            SoundManager.instance.StopSound(SoundType.Shake);
             if (postProcessingVolume.profile.TryGet(out chromaticAberration))
             {
                 Debug.Log("Chromatic Aberration effect found!");
@@ -77,11 +80,24 @@ namespace Player
                 emissionModule.rateOverTime = baseEmission;
                 _ragdollManager.RemoveYConstraint();
                 bubbleParticleSystem.Stop();
+                SoundManager.instance.StopSound(SoundType.Shake);
             }
             else
             {
+                SoundManager.instance.PlaySound(SoundType.Shake);
                 bubbleParticleSystem.Play();
                 _ragdollManager.EnableYConstraint();
+            }
+        }
+        
+        private void PlaySound()
+        {
+            playSoundCounter += Time.deltaTime;
+            if (playSoundCounter >= playSoundTotal)
+            {
+                playSoundCounter = 0;
+                playSoundTotal = Random.Range(1f, 2f);
+                SoundManager.instance.PlaySound(SoundType.Scream);
             }
         }
 
@@ -89,6 +105,7 @@ namespace Player
         {
             if (!shouldDrag)
                 return;
+            PlaySound();
             Vector3 mouseScreenPosition = Input.mousePosition;
 
             Ray ray = Camera.main.ScreenPointToRay(mouseScreenPosition);
@@ -132,6 +149,7 @@ namespace Player
             _ragdollManager.DisableRagdoll();
             Debug.Log("Exited Shake state.");
             Debug.Log($"Total Shake Force: {_shakeForce}");
+            SoundManager.instance.StopSound(SoundType.Shake);
         }
     }
 }
