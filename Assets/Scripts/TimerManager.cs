@@ -41,6 +41,8 @@ namespace DefaultNamespace
             if (currentTime >= timerTotal.value)
             {
                 currentTime = 0;
+                timerText.text = (timerTotal.value - currentTime).ToString("F2");
+                timerText.gameObject.SetActive(false);
                 changeStateEvent.Raise(PlayerStateEnum.READY_TO_FLY);
                 _shouldTimerRun = false;
             }

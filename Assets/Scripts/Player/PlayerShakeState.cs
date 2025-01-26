@@ -106,35 +106,35 @@ namespace Player
             if (!shouldDrag)
                 return;
             PlaySound();
-            Vector3 mouseScreenPosition = Input.mousePosition;
-
-            Ray ray = Camera.main.ScreenPointToRay(mouseScreenPosition);
-            Plane plane = new Plane(Vector3.forward, player.transform.position);
-
-            if (plane.Raycast(ray, out float distance))
-            {
-                Vector3 mouseWorldPosition = ray.GetPoint(distance);
-                
-                Vector3 offset = new Vector3(0, -3f, 0);
-
-                Vector3 newPosition = new Vector3(
-                    Mathf.Clamp(mouseWorldPosition.x, -5f, 5f),
-                    mouseWorldPosition.y + offset.y,
-                    player.transform.position.z
-                );
-                float distanceMoved = Vector3.Distance(_previousPosition, newPosition);
-                if (distanceMoved > 0.5f)
-                {
-                    var emissionModule = bubbleParticleSystem.emission;
-                    emissionModule.rateOverTime = distanceMoved * 150;
-                    chromaticAberration.intensity.value = distanceMoved * 0.1f;
-                    _ragdollManager.ShakeRagdoll(newPosition, _previousPosition);
-                }
-                _shakeForce += Mathf.RoundToInt(distanceMoved);
-                _shakeForceText.text = $"Shake Force: {_shakeForce}";
-                _previousPosition = newPosition;
-                player.transform.position = newPosition;
-            }
+            // Vector3 mouseScreenPosition = Input.mousePosition;
+            //
+            // Ray ray = Camera.main.ScreenPointToRay(mouseScreenPosition);
+            // Plane plane = new Plane(Vector3.forward, player.transform.position);
+            //
+            // if (plane.Raycast(ray, out float distance))
+            // {
+            //     Vector3 mouseWorldPosition = ray.GetPoint(distance);
+            //     
+            //     Vector3 offset = new Vector3(0, -3f, 0);
+            //
+            //     Vector3 newPosition = new Vector3(
+            //         Mathf.Clamp(mouseWorldPosition.x, -5f, 5f),
+            //         mouseWorldPosition.y + offset.y,
+            //         player.transform.position.z
+            //     );
+            //     float distanceMoved = Vector3.Distance(_previousPosition, newPosition);
+            //     if (distanceMoved > 0.5f)
+            //     {
+            //         var emissionModule = bubbleParticleSystem.emission;
+            //         emissionModule.rateOverTime = distanceMoved * 150;
+            //         chromaticAberration.intensity.value = distanceMoved * 0.1f;
+            //         _ragdollManager.ShakeRagdoll(newPosition, _previousPosition);
+            //     }
+            //     _shakeForce += Mathf.RoundToInt(distanceMoved);
+            //     _shakeForceText.text = $"Shake Force: {_shakeForce}";
+            //     _previousPosition = newPosition;
+            //     player.transform.position = newPosition;
+            // }
         }
         
         private void MoveTowardsOffset(Vector3 newPosition)

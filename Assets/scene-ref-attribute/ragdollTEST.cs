@@ -23,7 +23,7 @@ public class ragdollTEST : MonoBehaviour
 
             // Appliquer la force dans cette direction
             // rb.AddForce(direction * forceAmount, ForceMode.Force);
-            rb.velocity = direction * forceAmount;
+            rb.linearVelocity = direction * forceAmount;
             // Vous pouvez utiliser ForceMode.Impulse pour un effet instantané
         }
     }

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2243361767162443740}
+  - component: {fileID: 6867377013445676639}
   m_Layer: 0
   m_Name: Obstacles
   m_TagString: Untagged
@@ -37,6 +38,25 @@ Transform:
   - {fileID: 3578258710916557209}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6867377013445676639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2546203653404705539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a519db80e054871874ef3d2a30c553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Obstacles:
+  - {fileID: 3177061259961978447}
+  - {fileID: 2101708598460997021}
+  - {fileID: 4243332006375633699}
+  buildingMaterials:
+  - {fileID: 2100000, guid: 489c2ce31f77141b2bc97cdbe9111547, type: 2}
+  - {fileID: 2100000, guid: 7f0872d4476ea452b8d4f70189da3360, type: 2}
 --- !u!1001 &1291315951478497484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -243,6 +263,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6010554e7aba047709afdc5b91cd6073, type: 3}
       insertIndex: -1
       addedObject: {fileID: 764318034772091606}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6010554e7aba047709afdc5b91cd6073, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7404067560881252100}
   m_SourcePrefab: {fileID: 100100000, guid: 6010554e7aba047709afdc5b91cd6073, type: 3}
 --- !u!4 &2836389043103601909 stripped
 Transform:
@@ -275,6 +298,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1699422, y: 0.0065074563, z: 0.19754511}
   m_Center: {x: -0.010797123, y: 3.2467378e-15, z: -0.24376877}
+--- !u!114 &7404067560881252100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3177061259961978447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c08413481eff747508da917669f140b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerDeathEvent: {fileID: 11400000, guid: 462968936d7e54684a3474e046e4c662, type: 2}
 --- !u!1001 &3900748584548404850
 PrefabInstance:
   m_ObjectHideFlags: 0
