@@ -24,13 +24,16 @@ namespace Player
         private Material bottleMaterial;
         private GameObject goObject;
         private GameListener onBoostListener;
+        private Animator canvasAnimator;
 
 
         public void Initialize(GameObject player, Animator playerAnimator,
             GameListener refuelListener, PlayerStateManager _playerStateManager,
-            OnFlyStartEvent onFlyStartEvent, GameEvent onPlayerDeathEvent, Material bottleMaterial, GameObject goObject)
+            OnFlyStartEvent onFlyStartEvent, GameEvent onPlayerDeathEvent, Material bottleMaterial, GameObject goObject,
+            Animator canvasAnimator)
         {
             this.goObject = goObject;
+            this.canvasAnimator = canvasAnimator;
             this.bottleMaterial = bottleMaterial;
             this.onPlayerDeathEvent = onPlayerDeathEvent;
             this.player = player;
@@ -49,6 +52,7 @@ namespace Player
         
         public override Task Enter()
         {
+            canvasAnimator.SetTrigger("start");
             TotalFuel = 100;
             Debug.Log("Entered Fly state.");
             SoundManager.instance.PlaySound(SoundType.HappyScream);

@@ -32,6 +32,7 @@ namespace Player
         [SerializeField] private OnFlyStartEvent onFlyStartEvent;
         [SerializeField] private Material bottleMaterial;
         [SerializeField] private GameObject GoObject;
+        [SerializeField] private Animator canvasAnimator;
         
         [Header("Ready to Fly State")]
         [SerializeField] private Transform readyToFlyTransform;
@@ -54,7 +55,7 @@ namespace Player
             DeathState = new PlayerDeathState();
             DeathState.Initialize(ragdollManager);
             FlyState.Initialize(gameObject, playerAnimator, refuelListener, this,
-                onFlyStartEvent, onPlayerDeathEvent, bottleMaterial, GoObject);
+                onFlyStartEvent, onPlayerDeathEvent, bottleMaterial, GoObject, canvasAnimator);
             ShakeState.Initialize(gameObject, shakeText, ragdollManager, stopDragListener, bubbleParticleSystem, postProcessingVolume);
             ReadyToFlyState.Initialize(this, ragdollManager, playerAnimator, readyToFlyTransform, gameObject, canonAnimimator);
             IdleState.Initialize(playerAnimator);

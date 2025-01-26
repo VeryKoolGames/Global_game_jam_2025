@@ -10155,6 +10155,7 @@ GameObject:
   - component: {fileID: 1110819070}
   - component: {fileID: 1110819069}
   - component: {fileID: 1110819073}
+  - component: {fileID: 1110819074}
   m_Layer: 5
   m_Name: CanvasUI
   m_TagString: Untagged
@@ -10343,6 +10344,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1110819074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110819064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee3c422354c134a38b7356524449335c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highScoreText: {fileID: 76001885}
 --- !u!1001 &1116286914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10925,6 +10939,7 @@ MonoBehaviour:
   onFlyStartEvent: {fileID: 11400000, guid: e559ad77a5a96426887f33a1cfdd16b7, type: 2}
   bottleMaterial: {fileID: 2100000, guid: a6447cd6c43834c098c2e0d9c1de20a9, type: 2}
   GoObject: {fileID: 749783680}
+  canvasAnimator: {fileID: 1110819073}
   readyToFlyTransform: {fileID: 989885249}
   canonAnimimator: {fileID: 548196194}
   playerAnimator: {fileID: 960272531}
@@ -11021,7 +11036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6764fbfa53ef4d4f9936b455c7a11c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeInvincible: {fileID: 0}
+  timeInvincible: {fileID: 11400000, guid: dde8d0c4053394f67a39bef682768245, type: 2}
 --- !u!1001 &1253386948
 PrefabInstance:
   m_ObjectHideFlags: 0
