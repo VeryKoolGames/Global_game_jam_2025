@@ -17,6 +17,7 @@ namespace DefaultNamespace
         {
             if (other.CompareTag("Player"))
             {
+                SoundManager.instance.PlaySound(SoundType.BOOST);
                 onBoostEvent.Raise();
                 particleSystemPowerUp.Play();
                 other.GetComponent<PlayerInvincibilityManager>().MakePlayerInvincible();

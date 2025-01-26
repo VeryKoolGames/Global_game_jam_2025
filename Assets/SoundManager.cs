@@ -11,6 +11,9 @@ public enum SoundType
     MainMusic,
     HappyScream,
     MECHE,
+    BOOST,
+    REFILL,
+    MUSIC2
 }
 
 
@@ -25,7 +28,7 @@ public class SoundManager : MonoBehaviour
 {
     public List<Sound> sounds;
     public static SoundManager instance;
-    void Start()
+    void Awake()
     {
         if (instance == null)
         {

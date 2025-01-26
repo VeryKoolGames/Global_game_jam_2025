@@ -3,7 +3,6 @@ using DG.Tweening;
 using Events;
 using ScriptableObject;
 using UnityEngine;
-using Vector3 = System.Numerics.Vector3;
 
 public class UpdateFovBasedOnSpeed : MonoBehaviour
 {
@@ -55,6 +54,9 @@ public class UpdateFovBasedOnSpeed : MonoBehaviour
     private void SetPovToDeath()
     {
         Camera.main.DOFieldOfView(100f, 0.5f);
+        Vector3 targetRotation = Camera.main.transform.eulerAngles;
+        targetRotation.x += 30f; // Add 30 degrees to the current x rotation
+        Camera.main.transform.DORotate(targetRotation, 0.5f);
         this.transform.SetParent(player.transform);
     }
     

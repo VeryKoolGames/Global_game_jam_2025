@@ -19,8 +19,7 @@ namespace Player
         public PlayerStateEnum currentStateEnum { get; private set; }
         [SerializeField, Self] ChangeStateListener changeStateListener;
 
-        [Header("Shake State")] [SerializeField]
-        private TextMeshProUGUI shakeText;
+        [Header("Shake State")]
         [SerializeField] private RagdollManager ragdollManager;
         [SerializeField] private GameListener stopDragListener;
         [SerializeField] private Rigidbody targetRigidbody;
@@ -57,10 +56,11 @@ namespace Player
             DeathState.Initialize(ragdollManager);
             FlyState.Initialize(gameObject, playerAnimator, refuelListener, this,
                 onFlyStartEvent, onPlayerDeathEvent, bottleMaterial, GoObject, canvasAnimator);
-            ShakeState.Initialize(gameObject, shakeText, ragdollManager, stopDragListener, bubbleParticleSystem, postProcessingVolume, followPlayer);
+            ShakeState.Initialize(gameObject, ragdollManager, stopDragListener, bubbleParticleSystem, postProcessingVolume, followPlayer);
             ReadyToFlyState.Initialize(this, ragdollManager, playerAnimator, readyToFlyTransform, gameObject, canonAnimimator);
             IdleState.Initialize(playerAnimator);
             StateMachine.Initialize(IdleState);
+            SoundManager.instance.PlaySound(SoundType.MUSIC2);
         }
         
         private void OnPlayerDeath()
