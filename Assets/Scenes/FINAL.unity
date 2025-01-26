@@ -1579,6 +1579,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1082271958561512970, guid: 18d3a5780af3b4b419e27af3069d201d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 693659885}
+    - targetCorrespondingSourceObject: {fileID: 1082271958561512970, guid: 18d3a5780af3b4b419e27af3069d201d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 693659888}
+    - targetCorrespondingSourceObject: {fileID: 1082271958561512970, guid: 18d3a5780af3b4b419e27af3069d201d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 693659889}
     - targetCorrespondingSourceObject: {fileID: 3135921509060577837, guid: 18d3a5780af3b4b419e27af3069d201d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 200138589}
@@ -6910,6 +6916,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.032328, y: 4.0885277, z: 0.5055747}
   m_Center: {x: -0.019947052, y: 0.19374442, z: -0.08912575}
+--- !u!114 &693659888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693659884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfead614871494ccd97d9d32b6a80ce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1236292576}
+  followDuration: 0.5
+  offset: {x: 0, y: 0, z: 0}
+  stopShakeEvent: {fileID: 693659889}
+--- !u!114 &693659889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693659884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 269057212af84770807fc97b820d1639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeStateEvent: {fileID: 11400000, guid: a537dea5097624ee0844156808474642, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &697366453 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7975778118457341008, guid: 17f919020c56c481594e303b7b222682, type: 3}
@@ -7136,7 +7174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &749783681
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10854,10 +10892,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!114 &1236292569
 MonoBehaviour:
@@ -10958,6 +10996,7 @@ MonoBehaviour:
   targetRigidbody: {fileID: 693659885}
   postProcessingVolume: {fileID: 1021853246}
   bubbleParticleSystem: {fileID: 1526171308}
+  followPlayer: {fileID: 693659888}
   refuelListener: {fileID: 1236292571}
   onFlyStartEvent: {fileID: 11400000, guid: e559ad77a5a96426887f33a1cfdd16b7, type: 2}
   bottleMaterial: {fileID: 2100000, guid: a6447cd6c43834c098c2e0d9c1de20a9, type: 2}
@@ -10983,7 +11022,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -10998,7 +11037,7 @@ Transform:
   m_GameObject: {fileID: 1236292565}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000011920926, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.4795637, z: -0.0040824413}
+  m_LocalPosition: {x: 0, y: 6.7, z: -0.0040824413}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

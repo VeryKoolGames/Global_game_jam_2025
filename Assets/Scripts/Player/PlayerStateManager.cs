@@ -26,6 +26,7 @@ namespace Player
         [SerializeField] private Rigidbody targetRigidbody;
         [SerializeField] private Volume postProcessingVolume;
         [SerializeField] private ParticleSystem bubbleParticleSystem;
+        [SerializeField] private FollowPlayer followPlayer;
         
         [Header("Fly State")]
         [SerializeField] private GameListener refuelListener;
@@ -56,7 +57,7 @@ namespace Player
             DeathState.Initialize(ragdollManager);
             FlyState.Initialize(gameObject, playerAnimator, refuelListener, this,
                 onFlyStartEvent, onPlayerDeathEvent, bottleMaterial, GoObject, canvasAnimator);
-            ShakeState.Initialize(gameObject, shakeText, ragdollManager, stopDragListener, bubbleParticleSystem, postProcessingVolume);
+            ShakeState.Initialize(gameObject, shakeText, ragdollManager, stopDragListener, bubbleParticleSystem, postProcessingVolume, followPlayer);
             ReadyToFlyState.Initialize(this, ragdollManager, playerAnimator, readyToFlyTransform, gameObject, canonAnimimator);
             IdleState.Initialize(playerAnimator);
             StateMachine.Initialize(IdleState);
