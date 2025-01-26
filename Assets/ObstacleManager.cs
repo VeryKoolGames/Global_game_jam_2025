@@ -9,6 +9,7 @@ public class ObstacleManager : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Obstacle hit something.");
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player hit an obstacle.");
