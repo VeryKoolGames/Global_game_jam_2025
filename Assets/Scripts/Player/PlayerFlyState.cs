@@ -17,7 +17,6 @@ namespace Player
         private float rotationAmount = 50f;
         private float camRotationAmount = 30f;
         private float rotationSpeed = 5f;
-        private float camRotationSpeed = 3f;
         public float TotalFuel { get; private set; }
         private GameListener refuelListener;
         private PlayerStateManager _playerStateManager;
@@ -127,7 +126,6 @@ namespace Player
                 tiltAngle
             );
 
-            // Smoothly rotate the camera towards the target rotation
             mainCamera.transform.rotation = Quaternion.Lerp(
                 mainCamera.transform.rotation, 
                 targetCameraRotation, 

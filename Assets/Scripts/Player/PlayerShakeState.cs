@@ -13,7 +13,6 @@ namespace Player
         private int _shakeForce = 0;
         private GameObject player;
         private Vector3 _previousPosition;
-        private TextMeshProUGUI _shakeForceText;
         private RagdollManager _ragdollManager;
         private GameListener stopDragListener;
         private bool shouldDrag = false;
@@ -26,16 +25,14 @@ namespace Player
         private FollowPlayer followPlayer;
 
 
-        public void Initialize(GameObject player, TextMeshProUGUI shakeForceText,
+        public void Initialize(GameObject player,
             RagdollManager ragdollManager, GameListener stopDragListener,
             ParticleSystem bubbleParticleSystem, Volume postProcessingVolume, FollowPlayer followPlayer)
         {
             this.followPlayer = followPlayer;
             this.bubbleParticleSystem = bubbleParticleSystem;
             this.postProcessingVolume = postProcessingVolume;
-            Debug.Log("PlayerShakeState initialized.");
             this.player = player;
-            this._shakeForceText = shakeForceText;
             this._ragdollManager = ragdollManager;
             this.stopDragListener = stopDragListener;
             this.stopDragListener.Response.AddListener(onDragStopped);
@@ -71,6 +68,8 @@ namespace Player
                 ));
             }
             bubbleParticleSystem.Play();
+            var emissionModule = bubbleParticleSystem.emission;
+            emissionModule.rateOverTime = 10;
             await Task.Delay(1000);
         }
         
@@ -128,13 +127,12 @@ namespace Player
                 float distanceMoved = Vector3.Distance(_previousPosition, newPosition);
                 if (distanceMoved > 0.5f)
                 {
-                    var emissionModule = bubbleParticleSystem.emission;
-                    emissionModule.rateOverTime = distanceMoved * 150;
                     chromaticAberration.intensity.value = distanceMoved * 0.1f;
                     _ragdollManager.ShakeRagdoll(newPosition, _previousPosition);
                 }
                 _shakeForce += Mathf.RoundToInt(distanceMoved);
-                _shakeForceText.text = $"Shake Force: {_shakeForce}";
+                var emissionModule = bubbleParticleSystem.emission;
+                emissionModule.rateOverTime = Mathf.Clamp(_shakeForce * 5, baseEmission, 500f);
                 _previousPosition = newPosition;
                 player.transform.position = newPosition;
             }
@@ -150,6 +148,9 @@ namespace Player
             followPlayer.StopFollowing();
             player.GetComponent<Rigidbody>().useGravity = false;
             player.GetComponent<Collider>().isTrigger = true;
+            // player.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezePositionY;
+            // player.GetComponent<Rigidbody>().constraints |= RigidbodyConstraints.FreezePositionX;
+            player.GetComponent<Rigidbody>().isKinematic = true;
             bubbleParticleSystem.Stop();
             stopDragListener.Response.RemoveListener(onDragStopped);
             _ragdollManager.DisableRagdoll();
