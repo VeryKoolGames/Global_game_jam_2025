@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-913796975970270321
+--- !u!114 &-1428069035271692678
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BottleUI
-  m_Shader: {fileID: -6465566751694194690, guid: 9155c9d9a4b5942a2a986942eccd59fe, type: 3}
+  m_Name: UIPattern 1
+  m_Shader: {fileID: -6465566751694194690, guid: 22ceb0557d6044b279541cb035650166, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -64,7 +64,7 @@ Material:
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0.25305158}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -77,16 +77,16 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _PatternTex:
+        m_Texture: {fileID: 2800000, guid: 46ea877f4d5dd4abbb4ed7336ea06586, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Tex:
-        m_Texture: {fileID: 2800000, guid: 8a9d72b4290294ebda5d83d2a61d3f7e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _maskTex:
-        m_Texture: {fileID: 2800000, guid: 011af75373ad8442383bbff2adcb2b4c, type: 3}
+    - _alphaTex:
+        m_Texture: {fileID: 2800000, guid: 03ee080a1af204d6484c91e08fd62940, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -124,6 +124,7 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
+    - _OffsetSpeed: 5.7
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -142,20 +143,15 @@ Material:
     - _UIMaskSoftnessY: 1
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _bubbleMovementSpeed: -0.28
-    - _bubbleRotationSpeed: 1.51
-    - _offset: 0.29199553
-    - _squareOffset: -0.02
-    - _waveSpeed: -0.2
+    - _alpha: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _color1: {r: 0.45882353, g: 1, b: 0.039215688, a: 0}
-    - _color2: {r: 0.8771799, g: 1, b: 0.28773576, a: 0}
-    - _tiling: {r: 0.81, g: 1.86, b: 0, a: 0}
-    - _vaguesTiling: {r: 0.27, g: 1, b: 0, a: 0}
+    - _Tiling: {r: 30, g: 16.3, b: 0, a: 0}
+    - _color1: {r: 0.1745283, g: 0.1745283, b: 1, a: 1}
+    - _color2: {r: 0.023584902, g: 0.023584902, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
