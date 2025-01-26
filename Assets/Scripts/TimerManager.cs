@@ -33,7 +33,7 @@ namespace DefaultNamespace
             startTimerListener.Response.RemoveListener(StartTimer);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (!_shouldTimerRun) return;
             currentTime += Time.deltaTime;

@@ -15,7 +15,9 @@ namespace Player
         private Tween moveTween;
         private Animator playerAnimator;
         private float rotationAmount = 50f;
+        private float camRotationAmount = 30f;
         private float rotationSpeed = 5f;
+        private float camRotationSpeed = 3f;
         public float TotalFuel { get; private set; }
         private GameListener refuelListener;
         private PlayerStateManager _playerStateManager;
@@ -79,6 +81,7 @@ namespace Player
         {
             HandleInput();
             MovePlayer();
+            RotateCamera();
             TotalFuel -= Time.deltaTime;
             UpdateMaterialOffset();
             if (TotalFuel <= 0)
@@ -111,6 +114,25 @@ namespace Player
         {
             targetPosition.x = Mathf.Clamp(targetPosition.x, -8f, 8f);
             player.transform.position = Vector3.MoveTowards(player.transform.position, targetPosition, moveSpeed * Time.deltaTime);
+        }
+        
+        private void RotateCamera()
+        {
+            Camera mainCamera = Camera.main;
+            float tiltAngle = Mathf.Clamp(player.transform.rotation.z * camRotationAmount, -camRotationAmount, camRotationAmount);
+
+            Quaternion targetCameraRotation = Quaternion.Euler(
+                mainCamera.transform.rotation.eulerAngles.x, 
+                mainCamera.transform.rotation.eulerAngles.y, 
+                tiltAngle
+            );
+
+            // Smoothly rotate the camera towards the target rotation
+            mainCamera.transform.rotation = Quaternion.Lerp(
+                mainCamera.transform.rotation, 
+                targetCameraRotation, 
+                Time.deltaTime * rotationSpeed
+            );
         }
 
         public override void Exit()
