@@ -34,7 +34,11 @@ namespace Player
             await Task.Delay(4000);
             _ragdollManager.DisableRagdoll();
             player.gameObject.transform.SetParent(targetTransform);
-            player.gameObject.transform.position = Vector3.zero;
+            Vector3 newPos = Vector3.zero;
+            newPos.x = -0.2f;
+            newPos.y = 2f;
+            newPos.z = 1f;
+            player.gameObject.transform.position = newPos;
             await Task.Delay(2000);
             SoundManager.instance.PlaySound(SoundType.MECHE);
             await Task.Delay(2700);

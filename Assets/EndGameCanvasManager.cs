@@ -14,13 +14,11 @@ public class EndGameCanvasManager : MonoBehaviour
     {
         StartCoroutine(Replay());
         Debug.Log("Replay");
-
     }
 
     public void QuitGame()
     {
         StartCoroutine(Quit());
-
     }
 
     IEnumerator Replay()
@@ -38,13 +36,9 @@ public class EndGameCanvasManager : MonoBehaviour
     }
 
 
-
-
-
-
     public void SetPlayerScore(float score)
     {
-        playerScoreText.text = "" + score;
+        playerScoreText.text = "" +  (int)score + "m";
     }
 
 
