@@ -5132,6 +5132,7 @@ GameObject:
   - component: {fileID: 481565914}
   - component: {fileID: 481565916}
   - component: {fileID: 481565915}
+  - component: {fileID: 481565917}
   m_Layer: 5
   m_Name: ENDMENU
   m_TagString: Untagged
@@ -5178,7 +5179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScoreText: {fileID: 1538062601}
-  animator: {fileID: 0}
+  animator: {fileID: 481565917}
 --- !u!222 &481565916
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5187,6 +5188,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 481565913}
   m_CullTransparentMesh: 1
+--- !u!95 &481565917
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481565913}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7287ae194d4da47e09fbea242f87ad0e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &485090188 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b0b5c46da12964a3ea10cdb7fb82125a, type: 3}
